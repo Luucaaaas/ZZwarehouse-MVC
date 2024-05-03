@@ -1,9 +1,18 @@
 <?php echo "Bonjour, $prenom $nom $id_role !"; ?><br>
-<?php echo $time_remaining ?>     
-<form action="../source/controleur/reset_session.php" method="POST">
+<?php echo $time_remaining ?>
+<?php     $resetMessage = isset($_GET['resetMessage']) ? $_GET['resetMessage'] : ''; ?>
+<form action="./index.php?uc=reset_session" method="POST">
         <button type="submit" name="reset">Réinitialiser le temps de session</button>
-    </form><br>
+    </form>
+<?php if (empty($resetMessage)) {
+  echo '<br>';
+}
+?>
 
+<?php if (!empty($resetMessage)) {
+    echo htmlspecialchars($resetMessage) . '<br><br>';
+}
+?>
 <hr class="custom"/>
 <p class="copyright-text">Copyright © 2024</p>
 <div class="social-icons">

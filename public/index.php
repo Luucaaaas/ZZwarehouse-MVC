@@ -24,5 +24,8 @@ switch ($uc) {
     case 'logout':
         include '../source/controleur/logout.php';
         break;
+    case 'reset_session':
+        include '../source/controleur/reset_session.php';
+        break;
 }
 ?>  
