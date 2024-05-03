@@ -21,5 +21,8 @@ switch ($uc) {
     case 'stock':
         include '../source/vues/stock/stock.php';
         break;
+    case 'logout':
+        include '../source/controleur/logout.php';
+        break;
 }
 ?>  
