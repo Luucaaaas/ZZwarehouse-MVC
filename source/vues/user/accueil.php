@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once '../source/Base/Database.php';
+require_once '../source/base/database.php';
 require_once '../source/controleur/int.php';
 
 if (isset($_SESSION['messageCommande'])) {
@@ -48,7 +48,7 @@ $results = $database->resultSet();
 
 
 
-    <li><a href="p_top_commande.php"><img src="../source/img/stonks.png" width="100" height="100"><br>TOP article 📈🔥</a></li>
+    <li><a href="p_top_commande.php"><img src="./img/stonks.png" width="100" height="100"><br>TOP article 📈🔥</a></li>
 
 
 

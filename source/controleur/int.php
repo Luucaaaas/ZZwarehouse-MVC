@@ -10,7 +10,7 @@ if (!isset($_SESSION['email'])) {
 }
 
 if (isset($_SESSION['email'])) {
-  $session_duration = 3600; // en secondes
+  $session_duration = 1800; // en secondes
   $current_time = time();
   $login_time = $_SESSION['login_time'];
 
