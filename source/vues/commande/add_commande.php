@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $database->bind(':type_mouvement', $type_mouvement);
         if ($database->execute()) {
             $_SESSION['messageCommande'] = $messageCommande;
-            header("Location: index.php?uc=commande&column=date_commande&order=desc");
+            header("Location: ./index.php?uc=commande&column=date_commande&order=desc");
         }
         
     } else {

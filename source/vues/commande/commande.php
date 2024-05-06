@@ -7,7 +7,7 @@ require_once '../source/controleur/int.php';
 $database = new Database();
 
 if ($id_role != '1' && $id_role != '2') {
-    header("Location: /index?uc=accueil");
+    header("Location: ./index.php?uc=accueil");
     exit;
 }
 
@@ -85,7 +85,7 @@ if (isset($_SESSION['messageCommande'])) {
         <div class="trois"><h1>Commande</h1></div>
         <div class="trois">
         <?php if ($id_role == '1' || $id_role == '2') : ?>
-             <a href=" index.php?uc=add_commande" class="btn-add">➕Ajouter une Commande</a>
+             <a href=" ./index.php?uc=add_commande" class="btn-add">➕Ajouter une Commande</a>
             <?php endif; ?>
         </div>
     </div>
