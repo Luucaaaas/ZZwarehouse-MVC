@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once '../source/Base/Database.php';
-require_once '../controleur/int.php';
+require_once '../source/base/database.php';
+require_once '../source/controleur/int.php';
 
 $database = new Database();
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $database->bind(':type_mouvement', $type_mouvement);
         if ($database->execute()) {
             $_SESSION['messageCommande'] = $messageCommande;
-            header("Location: p_commande.php");
+            header("Location: index.php?uc=commande&column=date_commande&order=desc");
         }
         
     } else {
@@ -56,13 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" href="../source/img/logogsbpetit.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../source/css/app.css">
+    <link rel="icon" href="./img/logogsbpetit.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./style/app.css">
     <title>ZZWarehouse | Passer une commande</title>
 </head>
 <body>
     <header class="header">
-        <?php include("zz_header.html"); ?>
+        <?php include("../source/vues/html/header.php"); ?>
     </header>
     <h1>Passer une commande</h1>
     <?php if (isset($messageErr)) { echo '<p class="error-message">' . htmlspecialchars_decode($messageErr) . '</p>'; } ?>
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <footer class="site-footer">
-        <?php include("zz_footer.html"); ?>
+        <?php include("../source/vues/html/footer.php"); ?>
     </footer>
 </body>
 </html>

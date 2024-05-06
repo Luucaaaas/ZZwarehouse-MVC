@@ -1,20 +1,21 @@
 <?php
 session_start();
-require_once 'Database.php';
-require_once 'z_int.php';
+
+require_once '../source/base/database.php';
+require_once '../source/controleur/int.php';
 
 $database = new Database();
 
-// si un utilisateur qui n'est pas admin tape l'url p_edit_stock.php?id_stock=1 alors il est rediriger vers la page de stock
+// si un utilisateur qui n'est pas admin tape l'url edit_stock.php?id_stock= alors il est rediriger vers la page de stock
 if ($id_role != '1') {
-    header("Location:p_stock.php");
+    header("Location:index.php");
     exit;
 }
 
 // si l'url ne contient pas ?id_stock= alors redireger vers la page stock avec un message d'erreur 
 if (!isset($_GET['id_stock'])) {
     $_SESSION['error_message'] = "Le stock n'existe pas.";
-    header("Location: p_stock.php");
+    header("Location: index.php?uc=stock");
     exit;
 }
 
@@ -30,7 +31,7 @@ $stock = $database->single();
 //si le stock n'esiste pas alors on est rediriger vers la page du stock avec un message d'erreur 
 if (!$stock) {
     $_SESSION['error_message'] = "Le stock n'existe pas.";
-    header("Location: p_stock.php");
+    header("Location: index.php?uc=stock");
     exit;
 }
 
@@ -55,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['message'] = '<div class="confirmation-message">Le stock a été modifié avec succès.</div>';
 
     // redirection vers la page de stock une fois que la modification est validé 
-    header("Location: p_stock.php");
+    header("Location: index.php?uc=stock");
     exit;
 }
 ?>
@@ -63,18 +64,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" href="../source/img/logogsbpetit.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../source/css/app.css">
+    <link rel="icon" href="./img/logogsbpetit.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./style/app.css">
     <title>ZZWarehouse | Modifier le stock</title>
 </head>
 <body>
     <header class="header">
-        <?php include("zz_header.html"); ?>
+        <?php include("../source/vues/html/header.php"); ?>
     </header>
 
     <h1>Modifier le stock</h1>
 
-    <form action="p_edit_stock.php?id_stock=<?php echo $id_stock; ?>" method="post" class="stock-form">
+    <form action="index.php?uc=edit_stock&id_stock=<?php echo $id_stock; ?>" method="post" class="stock-form">
         <label for="nom" class="stock-label">Nom :</label>
         <input type="text" name="nom" value="<?php echo $stock->nom; ?>" class="stock-input"><br>
 
@@ -91,13 +92,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </select><br>
 
         <div class="button-container">
-            <a href="p_stock.php" class="cancel-button">Annuler</a>
+            <a href="index.php?uc=stock" class="cancel-button">Annuler</a>
             <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir modifier le stock ?')" class="stock-button">Modifier</button>
         </div>
     </form>
 
     <footer class="site-footer">
-        <?php include("zz_footer.html"); ?>
+        <?php include("../source/vues/html/footer.php"); ?>
     </footer>
 </body>
 </html>

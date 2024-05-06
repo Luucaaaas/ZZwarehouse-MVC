@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-require_once '../source/Base/Database.php';
-require_once '../controleur/int.php';
+require_once '../source/base/database.php';
+require_once '../source/controleur/int.php';
 
 // si un utilisateur qui n'est pas admin tape l'url alors il est redirigé vers la page d'acceuil
 if ($id_role != '1') {
-    header("./index.php?uc=role.");
+    header("/");
     exit;
 }
 
@@ -37,6 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['messageRole'] = $message;
 }
 
-header("Location: ../index.php?uc=role");
+header("Location: index.php?uc=role");
 exit;
 ?>

@@ -1,13 +1,14 @@
 <?php
 session_start();
-require_once 'Database.php';
-require_once 'z_int.php';
+
+require_once '../source/base/database.php';
+require_once '../source/controleur/int.php';
 
 $database = new Database();
 
 // si un utilisateur qui n'est pas admin tape l'url alors il est rediriger vers la page de stock
 if ($id_role != '1') {
-    header("Location:p_stock.php");
+    header("Location: ./index.php");
     exit;
 }
  // recupere les valeur du formulaire
@@ -29,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($database->execute()) {
             $_SESSION['message'] = '<div class="confirmation-message">Stock ajouté avec succès !</div>';
-            header("Location: p_stock.php");
+            header("Location ./index.php?uc=stock");
         } 
         
     } else {
@@ -47,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <header class="header">
-        <?php include("zz_header.html"); ?>
+    <?php include("../source/vues/html/header.php"); ?>
     </header>
     <h1>Ajouter du stock</h1>
 
@@ -72,13 +73,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </select><br>
 
         <div class="button-container">
-            <a href="p_stock.php" class="cancel-button">Annuler</a>
+            <a href=" index.php?uc=stock" class="cancel-button">Annuler</a>
             <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir ajouter du stock ?')" class="stock-button">Ajouter</button>
         </div>
     </form>
 
     <footer class="site-footer">
-        <?php include("zz_footer.html"); ?>
+    <?php include("../source/vues/html/footer.php"); ?>
     </footer>
 </body>
 </html>

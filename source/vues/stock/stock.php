@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once 'Database.php';
-require_once 'z_int.php';
+require_once '../source/base/database.php';
+require_once '../source/controleur/int.php';
 
 $database = new Database();
 
@@ -34,19 +34,19 @@ if (isset($_SESSION['confirmation_message'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" href="../source/img/logogsbpetit.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../source/css/app.css">
+    <link rel="icon" href="./img/logogsbpetit.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./style/app.css">
     <title>ZZWarehouse | Stock</title>
 </head>
 <body>
     <header class="header">
-        <?php include("zz_header.html"); ?>
+    <?php include("../source/vues/html/header.php"); ?>
     </header>
 
     <div class=container-titre>
         <div class=trois></div>
         <div class=trois><h1>Stock</h1></div>
-        <div class=trois><?php if ($id_role == '1') : ?><a href="p_add_stock.php" class="btn-add">➕Ajouter un stock</a><?php endif; ?></div>
+        <div class=trois><?php if ($id_role == '1') : ?><a href="index.php?uc=add_stock" class="btn-add">➕Ajouter un stock</a><?php endif; ?></div>
         </div>
 
         <?php if (!empty($message)) : ?><p class="message"><?php echo $message; ?></p><?php endif; ?>
@@ -59,80 +59,65 @@ if (isset($_SESSION['confirmation_message'])) {
             <thead class="role-column">
                 <tr>
                     <th scope="col">
-                        <form method="get">
-                            <button type="submit" name="column" value="id_stock">
-                                ID
-                                <?php if ($column === 'id_stock') { ?>
-                                    <?php if ($order === 'asc') { ?>
-                                        <img src="../source/img/fleche-haut.png" width="30" height="30" alt="haut">
-                                    <?php } else { ?>
-                                        <img src="../source/img/fleche-bas.png" width="30" height="30" alt="bas">           
-                                    <?php } ?>
-                                <?php } ?>
-                            </button>
-                            <input type="hidden" name="order" value="<?php echo ($column === 'id_stock' && $order === 'asc') ? 'desc' : 'asc'; ?>">
-                        </form>
-                    </th>
-                    <th scope="col">
-                        <form method="get">
-                            <button type="submit" name="column" value="nom">
-                                Nom
-                                <?php if ($column === 'nom') { ?>
-                                    <?php if ($order === 'asc') { ?>
-                                        <img src="../source/img/fleche-haut.png" width="30" height="30" alt="haut">
-                                    <?php } else { ?>
-                                        <img src="../source/img/fleche-bas.png" width="30" height="30" alt="bas">           
-                                    <?php } ?>
-                                <?php } ?>
-                            </button>
-                            <input type="hidden" name="order" value="<?php echo ($column === 'nom' && $order === 'asc') ? 'desc' : 'asc'; ?>">
-                        </form>
-                    </th>
-                    <th scope="col">
-                        <form method="get">
-                            <button type="submit" name="column" value="description">
-                                Description
-                                <?php if ($column === 'description') { ?>
-                                    <?php if ($order === 'asc') { ?>
-                                        <img src="../source/img/fleche-haut.png" width="30" height="30" alt="haut">
-                                    <?php } else { ?>
-                                        <img src="../source/img/fleche-bas.png" width="30" height="30" alt="bas">           
-                                    <?php } ?>
-                                <?php } ?>
-                            </button>
-                            <input type="hidden" name="order" value="<?php echo ($column === 'description' && $order === 'asc') ? 'desc' : 'asc'; ?>">
-                        </form>
-                    </th>
-                    <th scope="col">
-                        <form method="get">
-                            <button type="submit" name="column" value="quantite_disponible">
-                                Quantité disponible
-                                <?php if ($column === 'quantite_disponible') { ?>
-                                    <?php if ($order === 'asc') { ?>
-                                        <img src="../source/img/fleche-haut.png" width="30" height="30" alt="haut">
-                                    <?php } else { ?>
-                                        <img src="../source/img/fleche-bas.png" width="30" height="30" alt="bas">           
-                                    <?php } ?>
-                                <?php } ?>
-                            </button>
-                            <input type="hidden" name="order" value="<?php echo ($column === 'quantite_disponible' && $order === 'asc') ? 'desc' : 'asc'; ?>">
-                        </form>
-                    </th>
-                    <th scope="col">
-                        <form method="get">
-                            <button type="submit" name="column" value="type">
-                                Type
-                                <?php if ($column === 'type') { ?>
-                                    <?php if ($order === 'asc') { ?>
-                                        <img src="../source/img/fleche-haut.png" width="30" height="30" alt="haut">
-                                    <?php } else { ?>
-                                        <img src="../source/img/fleche-bas.png" width="30" height="30" alt="bas">           
-                                    <?php } ?>
-                                <?php } ?>
-                            </button>
-                            <input type="hidden" name="order" value="<?php echo ($column === 'type' && $order === 'asc') ? 'desc' : 'asc'; ?>">
-                        </form>
-                    </th>
+                    <a href="./index.php?uc=stock&column=id_stock&order=<?php echo ($column === 'id_stock' && $order === 'asc') ? 'desc' : 'asc'; ?>">
+                    ID
+                        <?php if ($column === 'id_stock') { ?>
+                            <?php if ($order === 'asc') { ?>
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <?php } else { ?>
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <?php } ?>
+                        <?php } ?>
+                    </a>
+                </th>
+                <th scope="col">
+                    <a href="./index.php?uc=stock&column=nom&order=<?php echo ($column === 'nom' && $order === 'asc') ? 'desc' : 'asc'; ?>">
+                    Nom
+                        <?php if ($column === 'nom') { ?>
+                            <?php if ($order === 'asc') { ?>
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <?php } else { ?>
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <?php } ?>
+                        <?php } ?>
+                    </a>
+                </th>
+                <th scope="col">
+                    <a href="./index.php?uc=stock&column=description&order=<?php echo ($column === 'description' && $order === 'asc') ? 'desc' : 'asc'; ?>">
+                    Description
+                        <?php if ($column === 'description') { ?>
+                            <?php if ($order === 'asc') { ?>
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <?php } else { ?>
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <?php } ?>
+                        <?php } ?>
+                    </a>
+                </th>
+                <th scope="col">
+                    <a href="./index.php?uc=stock&column=quantite_disponible&order=<?php echo ($column === 'quantite_disponible' && $order === 'asc') ? 'desc' : 'asc'; ?>">
+                    Quantite disponible
+                        <?php if ($column === 'quantite_disponible') { ?>
+                            <?php if ($order === 'asc') { ?>
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <?php } else { ?>
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <?php } ?>
+                        <?php } ?>
+                    </a>
+                </th>
+                <th scope="col">
+                    <a href="./index.php?uc=stock&column=type&order=<?php echo ($column === 'type' && $order === 'asc') ? 'desc' : 'asc'; ?>">
+                    Type
+                        <?php if ($column === 'type') { ?>
+                            <?php if ($order === 'asc') { ?>
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <?php } else { ?>
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <?php } ?>
+                        <?php } ?>
+                    </a>
+                </th>
                     <?php if ($id_role == '1') : ?><th scope="col">Modifier</th><?php endif; ?>
                     <?php if ($id_role == '1') : ?><th scope="col">Supprimer</th><?php endif; ?>
                     <?php if ($id_role == '1' || $id_role == '2') : ?><th scope="col">Stock faible</th><?php endif; ?>
@@ -147,20 +132,17 @@ if (isset($_SESSION['confirmation_message'])) {
                                 <td data-label="Quantité disponible"><?php echo $item->quantite_disponible; ?></td>
                                 <td data-label="Type">
                                     <?php if ($item->type == 'Medicament') : ?>
-                                        <img src="../source/img/medicament.png" width="50" height="50"alt="medicament">
+                                        <img src="./img/medicament.png" width="50" height="50"alt="medicament">
                                     <?php else : ?>
-                                        <img src="../source/img/materiel.png" width="50" height="50"alt="materiel">
+                                        <img src="./img/materiel.png" width="50" height="50"alt="materiel">
                                     <?php endif; ?><br>
                                     <?php echo $item->type; ?>
                                 </td>
                                 <?php if ($id_role == '1') : ?><td data-label="Modifier">
-                                    <form action="p_edit_stock.php" method="get">
-                                        <input type="hidden" name="id_stock" value="<?php echo $item->id_stock; ?>">
-                                        <button type="submit" class="cursor-pointer">🖊️</button>
-                                    </form>
+                                    <button type="button" onclick="location.href='index.php?uc=edit_stock&id_stock=<?php echo $item->id_stock; ?>'">🖊️</button>
                                 </td><?php endif; ?>
                                 <?php if ($id_role == '1') : ?><td data-label="Supprimer">
-                                    <form id="delete-form-<?php echo $item->id_stock; ?>" action="z_delete_stock.php" method="post">
+                                    <form id="delete-form-<?php echo $item->id_stock; ?>" action="index.php?uc=delete_stock" method="post">
                                     <input type="hidden" name="id_stock" value="<?php echo $item->id_stock; ?>">
                                     <button type="button" class="cursor-pointer" onclick="showConfirmation(<?php echo $item->id_stock; ?>, '<?php echo addslashes($item->nom); ?>')">🗑️</button>
                                 </form>
@@ -199,7 +181,7 @@ if (isset($_SESSION['confirmation_message'])) {
                 }
                 </script>
                 <footer class="site-footer">
-                    <?php include("zz_footer.html"); ?>
+                    <?php include("../source/vues/html/footer.php"); ?>
                 </footer>
 </body>
 </html>

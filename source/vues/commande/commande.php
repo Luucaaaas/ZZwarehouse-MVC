@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-require_once './source/Base/Database.php';
-require_once './controleur/int.php';
+require_once '../source/base/database.php';
+require_once '../source/controleur/int.php';
 
 $database = new Database();
 
 if ($id_role != '1' && $id_role != '2') {
-    header("Location: ../public/index?uc=accueil");
+    header("Location: /index?uc=accueil");
     exit;
 }
 
@@ -71,13 +71,13 @@ if (isset($_SESSION['messageCommande'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" href="./source/img/logogsbpetit.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./source/css/app.css">
+    <link rel="icon" href="./img/logogsbpetit.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/app.css">
     <title>ZZWarehouse | Commande</title>
 </head>
 <body>
     <header class="header">
-        <?php include("./vues/header.php"); ?>
+        <?php include("../source/vues/html/header.php"); ?>
     </header>
 
     <div class="container-titre">
@@ -85,7 +85,7 @@ if (isset($_SESSION['messageCommande'])) {
         <div class="trois"><h1>Commande</h1></div>
         <div class="trois">
         <?php if ($id_role == '1' || $id_role == '2') : ?>
-             <a href="./vues/add_commande.php" class="btn-add">➕Ajouter une Commande</a>
+             <a href=" index.php?uc=add_commande" class="btn-add">➕Ajouter une Commande</a>
             <?php endif; ?>
         </div>
     </div>
@@ -97,9 +97,9 @@ if (isset($_SESSION['messageCommande'])) {
                     ID
                         <?php if ($column === 'id_commande') { ?>
                             <?php if ($order === 'asc') { ?>
-                            <img src="./source/img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
                             <?php } else { ?>
-                            <img src="./source/img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
                             <?php } ?>
                         <?php } ?>
                     </a>
@@ -109,9 +109,9 @@ if (isset($_SESSION['messageCommande'])) {
                     Utilisateur
                         <?php if ($column === 'nom_utilisateur') { ?>
                             <?php if ($order === 'asc') { ?>
-                            <img src="./source/img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
                             <?php } else { ?>
-                            <img src="./source/img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
                             <?php } ?>
                         <?php } ?>
                     </a>
@@ -121,9 +121,9 @@ if (isset($_SESSION['messageCommande'])) {
                     Produit
                         <?php if ($column === 'nom_produit') { ?>
                             <?php if ($order === 'asc') { ?>
-                            <img src="./source/img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
                             <?php } else { ?>
-                            <img src="./source/img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
                             <?php } ?>
                         <?php } ?>
                     </a>
@@ -133,9 +133,9 @@ if (isset($_SESSION['messageCommande'])) {
                     Quantité
                         <?php if ($column === 'quantite') { ?>
                             <?php if ($order === 'asc') { ?>
-                            <img src="./source/img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
                             <?php } else { ?>
-                            <img src="./source/img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
                             <?php } ?>
                         <?php } ?>
                     </a>
@@ -145,9 +145,9 @@ if (isset($_SESSION['messageCommande'])) {
                     Mouvement
                         <?php if ($column === 'type_mouvement') { ?>
                             <?php if ($order === 'asc') { ?>
-                            <img src="./source/img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
                             <?php } else { ?>
-                            <img src="./source/img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
                             <?php } ?>
                         <?php } ?>
                     </a>
@@ -157,9 +157,9 @@ if (isset($_SESSION['messageCommande'])) {
                     Date
                         <?php if ($column === 'date_commande') { ?>
                             <?php if ($order === 'asc') { ?>
-                            <img src="./source/img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
                             <?php } else { ?>
-                            <img src="./source/img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
                             <?php } ?>
                         <?php } ?>
                     </a>
@@ -169,9 +169,9 @@ if (isset($_SESSION['messageCommande'])) {
                     Statut
                         <?php if ($column === 'statut') { ?>
                             <?php if ($order === 'asc') { ?>
-                            <img src="./source/img/fleche-haut.png" width="30" height="30" alt="haut">
+                            <img src="./img/fleche-haut.png" width="30" height="30" alt="haut">
                             <?php } else { ?>
-                            <img src="./source/img/fleche-bas.png" width="30" height="30" alt="bas">           
+                            <img src="./img/fleche-bas.png" width="30" height="30" alt="bas">           
                             <?php } ?>
                         <?php } ?>
                     </a>
@@ -188,19 +188,19 @@ if (isset($_SESSION['messageCommande'])) {
                 <td data-label="Mouvement">                    
                     <div><?php
                         if ($commande->type_mouvement === 'Entree') {
-                            echo '<img src="./source/img/entree.png" width="30" height="30" alt="Mouvement d\'entrée">';
+                            echo '<img src="./img/entree.png" width="30" height="30" alt="Mouvement d\'entrée">';
                         } elseif ($commande->type_mouvement === 'Sortie') {
-                            echo '<img src="./source/img/sortie.png" width="30" height="30"  alt="Mouvement de sortie">';
+                            echo '<img src="./img/sortie.png" width="30" height="30"  alt="Mouvement de sortie">';
                         }
                     ?><br><?php echo $commande->type_mouvement; ?></div></td>
                 <td data-label="Date"><?php echo $commande->date_commande; ?></td>
                 <td data-label="Statut">
                     <?php if ($commande->statut === 'Validee') {
-                        echo '<img src="./source/img/validee.png" width="50" height="50" alt="Statut validé">';
+                        echo '<img src="./img/validee.png" width="50" height="50" alt="Statut validé">';
                     } elseif ($commande->statut === 'Invalidée') {
-                        echo '<img src="./source/img/invalidee.png" width="50" height="50" alt="Statut invalidé">';
+                        echo '<img src="./img/invalidee.png" width="50" height="50" alt="Statut invalidé">';
                     } elseif ($commande->statut === 'En attente') {
-                        echo '<img src="./source/img/en attente.png" width="50" height="50" alt="Statut en attente">';
+                        echo '<img src="./img/en attente.png" width="50" height="50" alt="Statut en attente">';
                     }
                     ?><br>
                     <h3><?php echo $commande->statut; ?></h3>
@@ -223,7 +223,7 @@ if (isset($_SESSION['messageCommande'])) {
         </tbody>
     </table>
     <footer class="site-footer">
-    <?php include("./vues/footer.php"); ?>
+    <?php include("../source/vues/html/footer.php"); ?>
 </footer>
 </body>
 </html>

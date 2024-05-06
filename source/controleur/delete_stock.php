@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once 'Database.php';
+require_once '../source/base/database.php';
 
 $database = new Database();
 
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['confirmation_message'] = "La colonne a été supprimé avec succès.";
 
         // remetttre l utlisateur sur la page stock
-        header("Location: p_stock.php");
+        header("Location: index.php?uc=stock");
         exit();
     }
 }
